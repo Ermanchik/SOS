@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Doska</string>
+    <string name="my_ads">Ads</string>
+    <string name="cars_ads">Cars</string>
+    <string name="pc_ads">Mashini SMERTI</string>
+    <string name="smartphone_ads">Phones</string>
+    <string name="dm_ads">DMs</string>
+    <string name="sign_up">SignUP</string>
+    <string name="sign_in">SignIN</string>
+    <string name="sign_out">SignOUT</string>
+    <string name="account">Account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="signup_button">SignUP</string>
+    <string name="sign_in_button">SignIN</string>
+    <string name="sign_in_or_sign_up">SignIN or signUP</string>
+    <!-- -->
+    <string name="edit_ac_title">Name</string>
+    <string name="edit_ac_price">Price</string>
+    <string name="edit_ac_description">Description</string>
+    <string name="edit_ac_tel">Number</string>
+
+    <string name="toggle_open">Open</string>
+    <string name="toggle_close">Close</string>
+
+</resources>
