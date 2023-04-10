@@ -64,9 +64,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderData
         }
         public void setData(NewPost newPost)
         {
+            Picasso.get().load(newPost.getImageId()).into(imAds);
             tvTitle.setText(newPost.getTitle());
             String price_tel = "Price : " + newPost.getPrice() + " Phone : " + newPost.getTel();
             tvPriceTel.setText(price_tel);
+            tvDesc.setText(newPost.getDisc());
         }
 
         @Override
@@ -78,5 +80,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolderData
     public interface OnItemClickCustom
     {
         public void onItemSelected(int position);
+    }
+    public void updateAdapter(List<NewPost> listData)
+    {
+        arrayPost.clear();
+        arrayPost.addAll(listData);
+        notifyDataSetChanged();
     }
 }

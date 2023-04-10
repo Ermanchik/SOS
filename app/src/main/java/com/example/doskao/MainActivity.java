@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.doskao.adapter.DataSender;
 import com.example.doskao.adapter.PostAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +36,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView nav_view;
@@ -47,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private PostAdapter.OnItemClickCustom onItemClickCustom;
     private RecyclerView rcView;
-    private PostAdapter postAdapter
+    private PostAdapter postAdapter;
+    private DataSender dataSender;
 
 
 
@@ -64,7 +70,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setOnItemClickCustom();
         rcView = findViewById(R.id.rcView);
         rcView.setLayoutManager(new LinearLayoutManager(this));
-        postAdapter = new PostAdapter(this, onItemClickCustom);
+        List<NewPost> arrayPost = new ArrayList<>();
+
+        postAdapter = new PostAdapter(arrayPost,this, onItemClickCustom);
         rcView.setAdapter(postAdapter);
         nav_view = findViewById(R.id.nav_view);
         DrawerLayout = findViewById(R.id.DrawerLayout);
@@ -75,10 +83,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_view.setNavigationItemSelectedListener(this);
         userEmail = nav_view.getHeaderView(0).findViewById(R.id.tvEmail);
         mAuth = FirebaseAuth.getInstance();
-        setOnItemClickCustom();
 
 
 
+
+
+    }
+    private void getDataDB()
+    {
+        dataSender = new DataSender() {
+            @Override
+            public void obDataRecived(List<NewPost> listData)
+            {
+                Collections.reverse(listData);
+                postAdapter.updateAdapter(listData);
+
+
+            }
+        };
 
     }
     private void setOnItemClickCustom()
